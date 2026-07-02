@@ -5,6 +5,14 @@ sağlayan bir platform. Backend, farklı sinema zincirlerinin sitelerinden
 (Cinetime, Cineverse/Paribu vb.) seans verilerini otomatik olarak çeker ve
 TMDB API'siyle film bilgilerini (afiş, özet, puan) zenginleştirir.
 
+| Film Listesi | Film Detayı |
+|---|---|
+| ![Film Listesi](docs/film_listesi.png) | ![Film Detayı](docs/film_detay.png) |
+
+| Sinema Salonları | Ayrıcalıklı Salonlar |
+|---|---|
+| ![Sinema Salonları](docs/sinema_salonlari.png) | ![Ayrıcalıklı Salonlar](docs/ayricalikli_salonlar.png) |
+
 ## Özellikler
 
 - **Otomatik veri toplama**: Her gün saat 06:00'da zamanlanmış görev (scheduler)
@@ -72,6 +80,28 @@ npm run dev
 
 ## Kullanılan Teknolojiler
 
-- **Backend**: Python, FastAPI, SQLAlchemy, PostgreSQL, APScheduler, Playwright
-- **Frontend**: Next.js, React, TypeScript, Tailwind CSS
-- **Dış servis**: TMDB API (film verisi)
+### Backend
+
+- **Python** — ana dil
+- **FastAPI** — REST API framework'ü
+- **Uvicorn** — ASGI sunucusu (FastAPI'yi çalıştırır)
+- **SQLAlchemy** — ORM, veritabanı modelleri ve sorguları
+- **PostgreSQL** (`psycopg2-binary` sürücüsüyle) — ana veritabanı
+- **APScheduler** — her gün otomatik veri çekme için zamanlanmış görev (cron)
+- **Playwright** — sinema sitelerinden (Cinetime, Cineverse) seans ve poster
+  verisini tarayıcı otomasyonuyla çekme (web scraping)
+- **httpx / requests** — TMDB API'sine HTTP istekleri
+- **python-dotenv** — ortam değişkeni (`.env`) yönetimi
+
+### Frontend
+
+- **Next.js 16** (App Router) — React tabanlı framework, sayfa yönlendirme
+  ve sunucu/istemci bileşenleri
+- **React 19** — arayüz bileşenleri
+- **TypeScript** — tip güvenliği
+- **Tailwind CSS 4** — stil/tasarım
+- **Node.js** — Next.js'in çalıştığı JavaScript ortamı (paket yönetimi: npm)
+
+### Dış Servisler
+
+- **TMDB (The Movie Database) API** — film afişi, özet, puan gibi meta veriler
