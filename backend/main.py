@@ -80,6 +80,7 @@ def update_posters_auto():
                         const imgs = document.querySelectorAll('img[src*="marsgate"], img[src*="cdn"]');
                         const r = [];
                         imgs.forEach(img => {
+                            if (img.src.toLowerCase().includes('logo')) return;
                             const a = img.closest('a');
                             if (!a) return;
                             r.push({slug: a.href.split('/').pop(), poster: img.src});
@@ -94,6 +95,8 @@ def update_posters_auto():
                 film_norm = normalize(film.title)
                 for card in cards:
                     slug_norm = normalize(card['slug'].replace('-filmi-izle','').replace('-filmi','').replace('-',' '))
+                    if len(slug_norm) < 3:
+                        continue
                     if film_norm == slug_norm or film_norm in slug_norm or slug_norm in film_norm:
                         film.poster_path = card['poster']
                         updated += 1
